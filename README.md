@@ -5,4 +5,4 @@ Repo for medical imaging project. Idea formulation
 ## Aim
 - Repo is to perform medical imaging / AI-based project.
 - Keep it close to cancer (?) Find databases that I can train imaging  on.
-    - Find pre-exisitng medical imaging repos & add a RAG app ontop of it?
+    - Find pre-exisitng medical imaging repos & add a RAG app on top of it?
