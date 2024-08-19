@@ -1,3 +1,4 @@
+# %%
 # https://youtu.be/R-N-YXzvOmY
 import os
 import random
@@ -60,3 +61,5 @@ random_image_files = random.sample(all_image_files, 4)
 # Choose between 'bbox', 'seg', or 'both'
 display_type = 'seg'
 display_images_with_coco_annotations(random_image_files, annotations, display_type)
+
+# %%

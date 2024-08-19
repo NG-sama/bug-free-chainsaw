@@ -39,6 +39,11 @@ Example structure of the YOLO annotation file:
 <class_id> <normalized_polygon_coordinate_1> <normalized_polygon_coordinate_2> ... <normalized_polygon_coordinate_n>
 0 0.123456 0.234567 0.345678 0.456789 ...
 
+Summary of YOLO Annotation Format
+
+    File Naming: image.jpg -> image.txt
+    Line Format: class_id center_x center_y width height
+    Values: Normalized (0 to 1) relative to image dimensions.
 """
 
 

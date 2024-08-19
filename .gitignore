@@ -1,5 +1,6 @@
 # Ignored data folders
 data_handling_code/data/
+data_handling_code/COCO_output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

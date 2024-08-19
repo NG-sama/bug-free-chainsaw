@@ -43,6 +43,13 @@ def get_image_mask_pairs(data_dir):
 
 def mask_to_polygons(mask, epsilon=1.0):
     """
+    mask_to_polygons(mask,epsilon) converts mask to polygon. 
+        step 1: 
+            Find contours from binary mask. 
+            Contours are curves that join all the continuous points along a boundary having the same color or intensity.
+        Step 2:
+            Convert Contours to Polygons. Polygon can be a n-sided figure. In our case, we consider a rectangle as the least acceptable polygon.
+
     Importance of Polygon Conversion
 
     Segmentation Representation:
@@ -67,6 +74,9 @@ def mask_to_polygons(mask, epsilon=1.0):
     return polygons
 
 def process_data(image_paths, mask_paths, output_dir):
+    """
+    process_data() creates the COCO Json format 
+    """
     annotations = []
     images = []
     image_id = 0

@@ -1,3 +1,4 @@
+# %%
 # https://youtu.be/R-N-YXzvOmY
 import os
 import random
@@ -44,3 +45,5 @@ image_paths = [os.path.join(image_dir, f) for f in random_image_files]
 annotation_paths = [os.path.join(annotation_dir, f.replace('.png', '.txt')) for f in random_image_files]
 
 display_images_with_annotations(image_paths, annotation_paths)
+
+# %%
