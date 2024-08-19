@@ -3,6 +3,18 @@
 With this code, we will convert our labeled mask image annotations to coco json 
 format so they can be used in training Detectron2 (or Mask R-CNN). 
 
+COCO JSON refers to the JSON format used by the Common Objects in Context (COCO) dataset, which is a large-scale object detection, segmentation, and captioning dataset.
+This format is used to structure and store annotations for images in a way that is compatible with the COCO dataset's data schema.
+
+Detectron2 is a powerful and flexible library for object detection and segmentation developed by Facebook AI Research (FAIR). 
+It is the successor to Detectron and provides state-of-the-art models and tools for computer vision tasks. 
+To train a custom model in Detectron2, you need to prepare your dataset in COCO format or other supported formats and configure Detectron2 to use it.
+
+Requirements for Detectron2:
+Hardware: 8 NVIDIA V100s with NVLink.
+Software: Python 3.7, CUDA 10.1, cuDNN 7.6.5, PyTorch 1.5, TensorFlow 1.15.0rc2, Keras 2.2.5, MxNet 1.6.0b20190820.
+Model: an end-to-end R-50-FPN Mask-RCNN model, using the same hyperparameter as the Detectron baseline config (it does not have scale augmentation).
+
 """
 
 
@@ -14,6 +26,9 @@ import shutil
 from sklearn.model_selection import train_test_split
 
 def get_image_mask_pairs(data_dir):
+    """
+    Preprocessing to fetch path of my image and mask pairs individually.
+    """
     image_paths = []
     mask_paths = []
     
@@ -27,6 +42,21 @@ def get_image_mask_pairs(data_dir):
     return image_paths, mask_paths
 
 def mask_to_polygons(mask, epsilon=1.0):
+    """
+    Importance of Polygon Conversion
+
+    Segmentation Representation:
+        Mask to Polygons: In segmentation tasks, especially with the COCO dataset format, object masks are often represented as polygons rather than binary masks. Converting masks to polygons allows you to represent the shapes of objects in a more compact and standardized format.
+        Efficient Representation: Polygons can be more memory-efficient than high-resolution binary masks, particularly for complex objects with detailed boundaries.
+
+    Compatibility with COCO Format:
+        Annotation Format: COCO dataset annotations often use polygonal representations for object segmentation. Detectron2 and other frameworks expect annotations in this format for tasks like instance segmentation.
+        Polygonal Masks: Converting masks to polygons ensures compatibility with datasets and models that expect polygon-based annotations.
+
+    Improved Performance:
+        Processing Efficiency: Polygonal representations can simplify computations for certain tasks. For example, some algorithms or models may process polygons more efficiently than binary masks, especially for large datasets.
+        Simplified Post-processing: Polygonal representations can simplify post-processing steps, such as object boundary adjustments and visualizations.    
+    """
     contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     polygons = []
     for contour in contours:
@@ -87,7 +117,7 @@ def process_data(image_paths, mask_paths, output_dir):
         json.dump(coco_output, f)
 
 def main():
-    data_dir = 'Data'
+    data_dir = 'data'
     output_dir = 'COCO_output'
     train_dir = os.path.join(output_dir, 'train')
     val_dir = os.path.join(output_dir, 'val')

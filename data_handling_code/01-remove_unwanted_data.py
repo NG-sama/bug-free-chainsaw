@@ -32,7 +32,7 @@ def prune_subdirectories(base_dir, keep_dirs):
                 elif os.path.isdir(sub_path):
                     print(f"Keeping: {sub_path}")
 
-base_directory = "Data"
+base_directory = "data"
 directories_to_keep = ['tissue images', 'mask binary without border', 'label masks modify']
 
 prune_subdirectories(base_directory, directories_to_keep)
