@@ -1,7 +1,8 @@
 # Ignored data folders
 data_handling_code/data/
 data_handling_code/COCO_output/
-myenv/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -133,6 +134,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+myenv/
 
 # Spyder project settings
 .spyderproject
