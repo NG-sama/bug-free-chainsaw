@@ -1,5 +1,5 @@
 # bug-free-chainsaw
-Repo for medical imaging project. Idea formulation
+Repo for a nucleus segmentation annotation. repo is still under construction.
 
 # Ideation:
 ## Aim
