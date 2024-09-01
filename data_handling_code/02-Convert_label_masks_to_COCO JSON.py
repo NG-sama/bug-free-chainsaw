@@ -127,8 +127,13 @@ def process_data(image_paths, mask_paths, output_dir):
         json.dump(coco_output, f)
 
 def main():
-    data_dir = 'data'
+    
+    data_dir = 'data/test'
     output_dir = 'COCO_output'
+    test_dir = os.path.join(output_dir, 'test')
+    os.makedirs(test_dir, exist_ok=True)
+    
+    """
     train_dir = os.path.join(output_dir, 'train')
     val_dir = os.path.join(output_dir, 'val')
     
@@ -144,6 +149,7 @@ def main():
     # Process train and val data
     process_data(train_img_paths, train_mask_paths, train_dir)
     process_data(val_img_paths, val_mask_paths, val_dir)
+    """
 
 if __name__ == '__main__':
     main()
